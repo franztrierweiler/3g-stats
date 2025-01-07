@@ -13,7 +13,7 @@ CONSOLIDATED_XLSX_FILE_NAME = "3G_Stats.xlsx"
 CSV_BASE_NAME = "BI-Suivi*.csv"
 
 # Verbosité du script
-VERBOSE = "OUI"
+VERBOSE = "YES"
 
 if __name__ == '__main__':
     print("Je suis un module")
