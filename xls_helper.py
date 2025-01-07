@@ -26,6 +26,7 @@ def concatenate(in_csv, in_csv_base_name, out_csv_file_name):
         # Transformer les valeurs de la colonne rssiOrange
         # Pour cela, nous itérons le dataframe issu du fichier CSV
         for index,data in df.iterrows():
+            # Ne pas traiter le header
             if (index > 0):
                 value = str(df.loc[index, "rssiOrange"])
                 # La cellule est vide ou contine une chaine de type x/y
