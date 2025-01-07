@@ -6,10 +6,11 @@
 
 # Chemins dans le répetoire d'exécution
 PATH_IN_CSV = "input"
-PATH_OUT_XLSX = "input"
-PATH_OUT_CONSOLIDATED_XLSX = "output"
+PATH_OUT_XLSX = "output"
+MERGED_CSV_FILE_NAME = "merged.csv"
+CONSOLIDATED_XLSX_FILE_NAME = "3G_Stats.xlsx"
 
-CSV_BASE_NAME = "BI-Suivi"
+CSV_BASE_NAME = "BI-Suivi*.csv"
 
 if __name__ == '__main__':
     print("Je suis un module")
