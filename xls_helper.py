@@ -10,6 +10,7 @@
 import os
 import glob
 import pandas
+import defines
 
 # Concatène un lot de fichiers CSV en un seul fichier CSV
 # in_csv: répertoire des fichiers CSV où sera aussi écrit le fichier concaténé
@@ -21,6 +22,12 @@ def concatenate(in_csv, in_csv_base_name, out_csv_file_name):
         df = pandas.read_csv(csv_file, encoding="utf-16",
                              delimiter=";")
         dfs.append(df)
+
+        if (defines.VERBOSE == "OUI"):
+            print("- Traité: lecture et concaténation de " + csv_file)
+            print("-> Axes: " + str(df.axes))
+            print("--------\n")
+
     df = pandas.concat(dfs,
                        ignore_index=True)
 
