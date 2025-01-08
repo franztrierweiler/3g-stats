@@ -22,7 +22,7 @@ def start():
     in_csv_path = os.path.join(dir_path, defines.PATH_IN_CSV)
     out_xlsx_path = os.path.join(dir_path, defines.PATH_OUT_XLSX)
 
-    xls_helper.concatenate(in_csv_path,
+    xls_helper.concatenate_clean_csv(in_csv_path,
                            defines.CSV_BASE_NAME,
                            defines.MERGED_CSV_FILE_NAME)
 

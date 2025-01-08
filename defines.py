@@ -12,6 +12,8 @@ CONSOLIDATED_XLSX_FILE_NAME = "3G_Stats.xlsx"
 
 CSV_BASE_NAME = "BI-Suivi*.csv"
 
+RSSI_MAX_VALUE = 31
+
 # Verbosité du script
 VERBOSE = "YES"
 

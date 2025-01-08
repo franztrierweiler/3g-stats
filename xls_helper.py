@@ -17,7 +17,7 @@ import defines
 # in_csv: répertoire des fichiers CSV où sera aussi écrit le fichier concaténé
 # in_csv_base_name: motif de recherche des fichiers CSV à lire
 # out_csv_file_name: nom du fichier CSV final
-def concatenate(in_csv, in_csv_base_name, out_csv_file_name):
+def concatenate_clean_csv(in_csv, in_csv_base_name, out_csv_file_name):
     dfs = []
     for csv_file in glob.glob(os.path.join(in_csv, in_csv_base_name)):
         df = pandas.read_csv(csv_file, encoding="utf-16",
@@ -25,16 +25,22 @@ def concatenate(in_csv, in_csv_base_name, out_csv_file_name):
         
         # Transformer les valeurs de la colonne rssiOrange
         # Pour cela, nous itérons le dataframe issu du fichier CSV
-        for index,data in df.iterrows():
+        for ind, data in df.iterrows():
             # Ne pas traiter le header
-            if (index > 0):
-                value = str(df.loc[index, "rssiOrange"])
-                # La cellule est vide ou contient une chaine de type x/y
+            if (ind >= 0):
+                value = str(df.loc[ind, "rssiOrange"])
+                # La cellule est vide ou contient une chaine de type x/y, alors détruire la ligne
                 if ("/" not in value):
-                    df.loc[index, "rssiOrange"] = 99
+                    # Si la cellule n'est pas de type x/y alors la détruire
+                    df.drop (labels=ind, inplace=True)
                 else:
-                    # Ne garder que le numérateur exprimé dans la chaine de type x/y
-                    df.loc[index, "rssiOrange"] = value.split("/")[0]
+                    # Ne garder que le numérateur exprimé dans la chaine de type x/y, alors détruire la ligne
+                    df.loc[ind, "rssiOrange"] = value.split("/")[0]
+                    # Si cette valeur est supérieure au seuil RSSI, détruire la ligne
+                    if (int(df.loc[ind, "rssiOrange"]) > defines.RSSI_MAX_VALUE):
+                        # Il m'a fallu deux heures pour trouver que inplace=True est requis lors du drop, sinon la ligne n'est pas effacée
+                        df.drop (labels=ind, inplace=True)
+
         
         dfs.append(df)
 
