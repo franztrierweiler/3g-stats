@@ -29,7 +29,7 @@ def concatenate(in_csv, in_csv_base_name, out_csv_file_name):
             # Ne pas traiter le header
             if (index > 0):
                 value = str(df.loc[index, "rssiOrange"])
-                # La cellule est vide ou contine une chaine de type x/y
+                # La cellule est vide ou contient une chaine de type x/y
                 if ("/" not in value):
                     df.loc[index, "rssiOrange"] = 99
                 else:
